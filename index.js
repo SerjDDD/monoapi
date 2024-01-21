@@ -59,7 +59,7 @@ const handler = async (req, res) => {
 app.get('*', handler);
 app.post('*', handler);
 
-const port = process.env.PORT || 3000;,
+const port = process.env.PORT;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
