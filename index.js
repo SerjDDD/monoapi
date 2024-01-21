@@ -51,7 +51,7 @@ const handler = async (req, res) => {
         console.log(JSON.stringify({ ...payload, response: jsonResponse }, null, 2));
 
         res.setHeader('Content-Type', 'application/json');
-        res.send(jsonResponse);
+        res.send(JSON.stringify(jsonResponse, null, 2));
     } catch (error) {
         console.error(error);
         res.status(400).send(error);
