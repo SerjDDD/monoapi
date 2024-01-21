@@ -19,15 +19,15 @@ const MODEL = {
 };
 
 require('dotenv').config();
-const prompt = fs.readFileSync('./prompt.txt', 'utf8');
 
 const app = express();
+app.use(bodyParser.json());
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-app.use(bodyParser.json());
+const prompt = fs.readFileSync('./prompt.txt', 'utf8');
 
 const handler = async (req, res) => {
     const payload = {
@@ -59,6 +59,6 @@ const handler = async (req, res) => {
 app.get('*', handler);
 app.post('*', handler);
 
-app.listen(3000, () => {
+app.listen(80, () => {
     console.log('Server is running on port 3000');
 });
