@@ -39,7 +39,7 @@ const handler = async (req, res) => {
     try {
         const chatCompletion = await openai.chat.completions.create({
             messages: [
-                { role: 'user', content: prompt },
+                { role: 'system', content: prompt },
                 { role: 'user', content: JSON.stringify(payload) }
             ],
             model: MODEL.GPT_3_5,
