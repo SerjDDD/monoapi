@@ -45,16 +45,19 @@ const handler = async (req, res) => {
             model: MODEL.GPT_3_5,
         });
 
-        console.log(JSON.stringify(chatCompletion, null, 2));
-
         const response = chatCompletion?.choices?.[0]?.message?.content;
         const jsonResponse = JSON.parse(response);
+
+        console.log(JSON.stringify({ ...payload, response: jsonResponse }, null, 2));
+
         res.send(jsonResponse);
     } catch (error) {
         console.error(error);
         res.status(400).send(error);
     }
 };
+
+app.get('/favicon.ico', (req, res) => res.status(404).send());
 
 app.get('*', handler);
 app.post('*', handler);
