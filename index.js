@@ -1,6 +1,5 @@
 const fs = require('fs');
 const express = require('express');
-const bodyParser = require('body-parser');
 const OpenAI = require('openai');
 
 const MODEL = {
@@ -21,7 +20,7 @@ const MODEL = {
 require('dotenv').config();
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -32,7 +31,7 @@ const prompt = fs.readFileSync('./prompt.txt', 'utf8');
 const handler = async (req, res) => {
     const payload = {
         method: req.method,
-        url: req.originalUrl,
+        endpoint: req.originalUrl,
         body: req.body
     };
 
